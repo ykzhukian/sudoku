@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
+import Cell from './components/Cell';
+
 import '../css/App.scss';
 
 class App extends Component {
+
   render() {
 
     return (
       <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Sudoku on the road</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <Cell data={{value: 6}}/>
       </div>
     );
   }

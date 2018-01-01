@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Cell from './components/Cell';
+import NineBlock from './components/NineBlock';
 
 import '../css/App.scss';
 
@@ -9,7 +10,7 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Cell data={{value: 6}}/>
+        <NineBlock data={{}}/>
       </div>
     );
   }

@@ -22,15 +22,15 @@ export default class NineBlock extends Component {
 
     return (
       <div className="nine-block">
-		<Cell data={{value: 1}} />
-		<Cell data={{value: 2}} />
-		<Cell data={{value: 3}} />
-		<Cell data={{value: 4}} />
-		<Cell data={{value: 5}} />
-		<Cell data={{value: 6}} />
-		<Cell data={{value: 7}} />
-		<Cell data={{value: 8}} />
-		<Cell data={{value: 9}} />
+    		<Cell data={{value: 1}} />
+    		<Cell data={{value: 2}} />
+    		<Cell data={{value: 3}} />
+    		<Cell data={{value: 4}} />
+    		<Cell data={{value: 5}} />
+    		<Cell data={{value: 6}} />
+    		<Cell data={{value: 7}} />
+    		<Cell data={{value: 8}} />
+    		<Cell data={{value: 9}} />
       </div>
     );
   }

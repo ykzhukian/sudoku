@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Cell from './components/Cell';
 import NineBlock from './components/NineBlock';
 
 import ReactMixin from 'react-mixin';
-import Util from './helper/Util';
+import Util from './helpers/Util';
 
 import '../css/App.scss';
 

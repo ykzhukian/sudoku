@@ -42,6 +42,36 @@ function swapNumbers(sudoku) {
 
 }
 
+function swapRows(blockIndex, sudoku) {
+
+	let currentSudoku = sudoku;
+    let indexRowA = Math.floor(Math.random() * 3) + blockIndex * 3;
+    let indexRowB = Math.floor(Math.random() * 3) + blockIndex * 3;
+
+    console.log(indexRowA + ' --> ' + indexRowB);
+    let temp = currentSudoku[indexRowA];
+    currentSudoku[indexRowA] = currentSudoku[indexRowB];
+    currentSudoku[indexRowB] = temp;
+
+    return currentSudoku;
+
+}
+
+function swapColumns(blockIndex, sudoku) {
+
+	let currentSudoku = sudoku;
+    let indexRowA = Math.floor(Math.random() * 3) + blockIndex * 3;
+    let indexRowB = Math.floor(Math.random() * 3) + blockIndex * 3;
+
+    console.log(indexRowA + ' --> ' + indexRowB);
+    let temp = currentSudoku[indexRowA];
+    currentSudoku[indexRowA] = currentSudoku[indexRowB];
+    currentSudoku[indexRowB] = temp;
+
+    return currentSudoku;
+
+}
+
 const Mixin = {
   newSudoku() {
     console.log('-------------------- Sudoku ----------------------');
@@ -60,7 +90,18 @@ const Mixin = {
     printSudoku(currentSudoku);
 
     // Swap rows & columns
-    
+    console.log('-------------------- Swap Rows ----------------------');
+    for (var i = 2; i >= 0; i--) {
+    	currentSudoku = swapRows(i, currentSudoku);
+    	currentSudoku = swapRows(i, currentSudoku);
+    }
+
+    printSudoku(currentSudoku);
+
+    console.log('-------------------- Swap Columns ----------------------');
+
+
+
 
 
   }

@@ -1,29 +1,16 @@
 import React, { Component } from 'react';
-import NineBlock from './components/NineBlock';
-
-import ReactMixin from 'react-mixin';
-import Util from './helpers/Util';
+import Index from './components/Index';
 
 import '../css/App.scss';
 
 export default class App extends Component {
 
-  componentDidMount() {
-    this.setState({
-      
-    })
-
-    Util.newSudoku();
-  }
-
   render() {
 
     return (
       <div className="App">
-        <NineBlock data={{}}/>
+        <Index />
       </div>
     );
   }
 }
-
-ReactMixin(App.prototype, Util);

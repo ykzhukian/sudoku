@@ -1,0 +1,25 @@
+.sudoku {
+	margin: auto;
+	border-collapse: collapse;
+
+	& {
+		border: 1px solid $main-color;
+	}
+
+	tr:not(:last-child) {
+		border-bottom: 1px solid $main-color;
+	}
+
+	tr:hover {
+		background-color: #eee;
+	}
+
+	td:not(:last-child) {
+		border-right: 1px solid $main-color;
+	}
+
+}
+
+.sudoku-row {
+	display: flex;
+}

@@ -21,7 +21,7 @@ export default class Cell extends Component {
   render() {
 
     return (
-      <div className="cell-block">{this.state.value}</div>
+      <td className="cell-block">{this.state.value}</td>
     );
   }
 }

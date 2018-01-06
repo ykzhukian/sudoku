@@ -60,15 +60,20 @@ function swapRows(blockIndex, sudoku) {
 function swapColumns(blockIndex, sudoku) {
 
 	let currentSudoku = sudoku;
-    let indexRowA = Math.floor(Math.random() * 3) + blockIndex * 3;
-    let indexRowB = Math.floor(Math.random() * 3) + blockIndex * 3;
+    let indexColA = Math.floor(Math.random() * 3) + blockIndex * 3;
+    let indexColB = Math.floor(Math.random() * 3) + blockIndex * 3;
 
-    console.log(indexRowA + ' --> ' + indexRowB);
-    let temp = currentSudoku[indexRowA];
-    currentSudoku[indexRowA] = currentSudoku[indexRowB];
-    currentSudoku[indexRowB] = temp;
+    console.log(indexColA + ' --> ' + indexColB);
 
-    return currentSudoku;
+    return currentSudoku.map(function(row, index) {
+
+    	let temp = row[indexColA];
+
+    	row[indexColA] = row[indexColB];
+    	row[indexColB] = temp;
+
+    	return row;
+    });
 
 }
 
@@ -76,33 +81,32 @@ const Mixin = {
   newSudoku() {
     console.log('-------------------- Sudoku ----------------------');
 
-    printSudoku(SEED_SUDOKU);
-
     // Swap numbers
     let currentSudoku = swapNumbers(SEED_SUDOKU);
 
     // Swap 15 times
     console.log('-------------------- Swap number 15 times ----------------------');
-    for (var i = 15; i >= 0; i--) {
+    for (let i = 15; i >= 0; i--) {
     	currentSudoku = swapNumbers(currentSudoku);
     }
 
-    printSudoku(currentSudoku);
-
     // Swap rows & columns
     console.log('-------------------- Swap Rows ----------------------');
-    for (var i = 2; i >= 0; i--) {
+    for (let i = 2; i >= 0; i--) {
     	currentSudoku = swapRows(i, currentSudoku);
     	currentSudoku = swapRows(i, currentSudoku);
     }
 
-    printSudoku(currentSudoku);
-
     console.log('-------------------- Swap Columns ----------------------');
 
+    for (let i = 2; i >= 0; i--) {
+    	currentSudoku = swapColumns(i, currentSudoku);
+    	currentSudoku = swapColumns(i, currentSudoku);
+    }
 
+    printSudoku(currentSudoku);
 
-
+    return currentSudoku;
 
   }
 };

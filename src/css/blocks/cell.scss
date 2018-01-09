@@ -13,9 +13,14 @@
 		}
 	}
 
-	&.prefilled input {
+	&.prefilled input, &.prefilled.error input {
 		font-weight: 700;
 		color: $main-color;
+	}
+
+	&.prefilled.error input {
+		color: #fff;
+		background-color: $dark-red;
 	}
 }
 

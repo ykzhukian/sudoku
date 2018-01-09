@@ -153,7 +153,7 @@ const Mixin = {
     
     for (var i = 0; i < sudoku.length; i++) {
         let rowArr = [];
-        let colArr = [];
+        let colArr = {};
         for (var j = 0; j < sudoku[i].length; j++) {
             
             if (sudoku[i][j] !== '') {
@@ -168,11 +168,11 @@ const Mixin = {
 
             if (sudoku[j][i] !== '') {
                 // Verify Column
-                if (colArr.indexOf(sudoku[j][i]) === -1) {
-                    colArr.push(sudoku[j][i]);
+                if (!colArr[sudoku[j][i]]) {
+                    colArr[sudoku[j][i]] = j;
                 } else {
                     errors.push([j, i]);
-                    // errors.push([, );
+                    errors.push([colArr[sudoku[j][i]], i]);
                 }
             }
             

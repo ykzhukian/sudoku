@@ -37,7 +37,7 @@ export default class Cell extends Component {
     let error = Util.checkDuplicate(this.props.data.errors, [this.props.data.row, this.props.data.col]);
 
     return (
-      <td className={"cell-block " + (error ? 'error ' : '' + (this.state.activated ? '' : 'prefilled'))}>
+      <td className={"cell-block " + (error ? 'error ' : '') + (this.state.activated ? '' : 'prefilled')}>
         <input
           className="cell-input" 
           type="text" 

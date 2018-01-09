@@ -1,10 +1,12 @@
-.sudoku {
+.sudoku-wrapper {
+	overflow: hidden;
 	margin: auto;
-	border-collapse: collapse;
+}
 
-	& {
-		border: 1px solid $main-color;
-	}
+.sudoku {
+	
+	border-collapse: collapse;
+	border: 1px solid $main-color;
 
 	tr:not(:last-child) {
 		border-bottom: 1px solid $main-color;
@@ -16,6 +18,20 @@
 
 	td:not(:last-child) {
 		border-right: 1px solid $main-color;
+	}
+
+	td, th {
+	  position: relative;
+	}
+	td:hover::after {
+	  content: "";
+	  position: absolute;
+	  background-color: #eee;
+	  left: 0;
+	  top: -2000px;
+	  height: 4000px;
+	  width: 100%;
+	  z-index: -1;
 	}
 
 }

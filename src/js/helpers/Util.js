@@ -20,13 +20,13 @@ const SEED_SUDOKU = [
 //     });
 // }
 
-function getAllIndexes(arr, val) {
-    var indexes = [], i;
-    for(i = 0; i < arr.length; i++)
-        if (arr[i] === val)
-            indexes.push(i);
-    return indexes;
-}
+// function getAllIndexes(arr, val) {
+//     var indexes = [], i;
+//     for(i = 0; i < arr.length; i++)
+//         if (arr[i] === val)
+//             indexes.push(i);
+//     return indexes;
+// }
 
 
 function swapNumbers(sudoku) {
@@ -148,19 +148,26 @@ const Mixin = {
     console.log(position);
   },
 
-  verifyValue(value, position, sudoku) {
+  verifyValue(sudoku) {
     let errors = [];
     // Verify row
-    let duplicates = getAllIndexes(sudoku[position.row], value);
-    for (var i = duplicates.length - 1; i >= 0; i--) {
-        errors.push([position.row, duplicates[i]]);
+    for (var i = 0; i < sudoku.length; i++) {
+        let rowArr = [];
+        for (var j = 0; j < sudoku[i].length; j++) {
+            if (sudoku[i][j] === '') {
+                continue;
+            }
+            if (rowArr.indexOf(sudoku[i][j]) === -1) {
+                rowArr.push(sudoku[i][j]);
+            } else {
+                errors.push([i, j]);
+                errors.push([i, sudoku[i].indexOf(sudoku[i][j])]);
+            }
+        }
     }
+    
 
-    if (errors.length > 0) {
-        errors.push([position.row, position.col]);
-    }
-
-    // console.log(errors);
+    console.log(errors);
     return errors;
   }
 };

@@ -43,9 +43,9 @@ export default class Sudoku extends Component {
   update(value, position) {
     let currentSudoku = this.state.currentSudoku;
     
-    let errors = Util.verifyValue(value, position, currentSudoku);
-
     currentSudoku[position.row][position.col] = value;
+    
+    let errors = Util.verifyValue(currentSudoku);
     
     this.setState({
       currentSudoku: currentSudoku,

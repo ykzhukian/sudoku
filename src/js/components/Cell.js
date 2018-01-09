@@ -11,13 +11,12 @@ export default class Cell extends Component {
       value: this.props.data.activated ? '' : this.props.data.value,
       correctValue: this.props.data.value,
       row: this.props.data.row,
-      col: this.props.data.col,
-      errors: this.props.data.errors,
-      error: Util.checkDuplicate(this.props.data.errors, [this.props.data.row, this.props.data.col])
+      col: this.props.data.col
     }
   }
 
   componentDidMount() {
+
   }
 
   onChange(event) {
@@ -30,7 +29,6 @@ export default class Cell extends Component {
       this.setState({value: value});
       this.props.updateSudoku(value, {row: this.state.row, col: this.state.col});
     }
-    console.log(this.props.data.errors);
   }
 
 
@@ -39,7 +37,7 @@ export default class Cell extends Component {
     let error = Util.checkDuplicate(this.props.data.errors, [this.props.data.row, this.props.data.col]);
 
     return (
-      <td className={"cell-block " + (error ? 'error' : '')}>
+      <td className={"cell-block " + (error ? 'error ' : '' + (this.state.activated ? '' : 'prefilled'))}>
         <input
           className="cell-input" 
           type="text" 

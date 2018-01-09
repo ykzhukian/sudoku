@@ -2,10 +2,20 @@
 	height: 50px;
 	width: 50px;
 	padding: 0;
+	input {
+		color: $secondary-color;
+	}
 
 	&.error {
-		color: #fff;
 		background-color: $error;
+		input {
+			color: #fff;
+		}
+	}
+
+	&.prefilled input {
+		font-weight: 700;
+		color: $main-color;
 	}
 }
 

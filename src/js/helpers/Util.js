@@ -153,7 +153,6 @@ const Mixin = {
     // Verify row
     let duplicates = getAllIndexes(sudoku[position.row], value);
     for (var i = duplicates.length - 1; i >= 0; i--) {
-        
         errors.push([position.row, duplicates[i]]);
     }
 

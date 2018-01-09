@@ -1,6 +1,12 @@
 .cell-block {
 	height: 50px;
 	width: 50px;
+	padding: 0;
+
+	.error {
+		color: #fff;
+		background-color: $error;
+	}
 }
 
 .cell-input {

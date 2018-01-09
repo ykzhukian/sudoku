@@ -150,19 +150,32 @@ const Mixin = {
 
   verifyValue(sudoku) {
     let errors = [];
-    // Verify row
+    
     for (var i = 0; i < sudoku.length; i++) {
         let rowArr = [];
+        let colArr = [];
         for (var j = 0; j < sudoku[i].length; j++) {
-            if (sudoku[i][j] === '') {
-                continue;
+            
+            if (sudoku[i][j] !== '') {
+                // Verify row
+                if (rowArr.indexOf(sudoku[i][j]) === -1) {
+                    rowArr.push(sudoku[i][j]);
+                } else {
+                    errors.push([i, j]);
+                    errors.push([i, sudoku[i].indexOf(sudoku[i][j])]);
+                }
             }
-            if (rowArr.indexOf(sudoku[i][j]) === -1) {
-                rowArr.push(sudoku[i][j]);
-            } else {
-                errors.push([i, j]);
-                errors.push([i, sudoku[i].indexOf(sudoku[i][j])]);
+
+            if (sudoku[j][i] !== '') {
+                // Verify Column
+                if (colArr.indexOf(sudoku[j][i]) === -1) {
+                    colArr.push(sudoku[j][i]);
+                } else {
+                    errors.push([j, i]);
+                    // errors.push([, );
+                }
             }
+            
         }
     }
     

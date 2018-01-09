@@ -160,7 +160,7 @@ const Mixin = {
         errors.push([position.row, position.col]);
     }
 
-    console.log(errors);
+    // console.log(errors);
     return errors;
   }
 };

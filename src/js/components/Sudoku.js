@@ -51,8 +51,6 @@ export default class Sudoku extends Component {
       currentSudoku: currentSudoku,
       errors: errors
     })
-    console.log(currentSudoku);
-
   }
 
 
@@ -69,7 +67,7 @@ export default class Sudoku extends Component {
             data={{
               value: Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) ? value : '',
               activated: !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]),
-              error: Util.checkDuplicate(this.state.errors, [rowIndex, index]),
+              errors: this.state.errors,
               row: rowIndex,
               col: index
             }} 

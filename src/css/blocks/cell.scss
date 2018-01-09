@@ -3,7 +3,7 @@
 	width: 50px;
 	padding: 0;
 
-	.error {
+	&.error {
 		color: #fff;
 		background-color: $error;
 	}

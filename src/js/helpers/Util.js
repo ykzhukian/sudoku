@@ -154,7 +154,7 @@ const Mixin = {
     for (var i = 0; i < sudoku.length; i++) {
         let rowArr = [];
         let colArr = {};
-        for (var j = 0; j < sudoku[i].length; j++) {
+        for (var j = 0; j < sudoku.length; j++) {
             
             if (sudoku[i][j] !== '') {
                 // Verify row
@@ -168,7 +168,7 @@ const Mixin = {
 
             if (sudoku[j][i] !== '') {
                 // Verify Column
-                if (!colArr[sudoku[j][i]]) {
+                if (!colArr[sudoku[j][i]] && colArr[sudoku[j][i]] !== 0) {
                     colArr[sudoku[j][i]] = j;
                 } else {
                     errors.push([j, i]);
@@ -180,7 +180,7 @@ const Mixin = {
     }
     
 
-    console.log(errors);
+    // console.log(errors);
     return errors;
   }
 };

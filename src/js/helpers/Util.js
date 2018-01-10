@@ -85,6 +85,39 @@ function swapColumns(blockIndex, sudoku) {
 
 }
 
+function checkAxis(position) {
+
+    let row = position.row;
+    let col = position.col;
+
+    if (row >= 0 && row < 3) {
+        if (col >= 0 && col < 3) {
+            return 0;
+        } else if (col >= 3 && col < 6) {
+            return 1;
+        } else {
+            return 2;
+        }
+    } else if (row >= 3 && row < 6) {
+        if (col >= 0 && col < 3) {
+            return 3;
+        } else if (col >= 3 && col < 6) {
+            return 4;
+        } else {
+            return 5;
+        }
+    } else {
+        if (col >= 0 && col < 3) {
+            return 6;
+        } else if (col >= 3 && col < 6) {
+            return 7;
+        } else {
+            return 8;
+        }
+    }
+
+}
+
 const Mixin = {
   newSudoku() {
     // console.log('-------------------- Sudoku ----------------------');

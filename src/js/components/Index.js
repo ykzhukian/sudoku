@@ -8,7 +8,7 @@ export default class Index extends Component {
     return (
       <div className="container">
       	<h1 className="title">Playing Sudoku</h1>
-        <Sudoku prefilled={17} />
+        <Sudoku prefilled={30} />
       </div>
     );
   }

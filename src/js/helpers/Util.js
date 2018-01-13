@@ -145,7 +145,7 @@ const Mixin = {
     	currentSudoku = swapColumns(i, currentSudoku);
     }
 
-    this.currentSudoku = currentSudoku;
+    // this.currentSudoku = currentSudoku;
     // console.log(this.currentSudoku);
 
     return currentSudoku;
@@ -153,7 +153,7 @@ const Mixin = {
 
   generatePrefilled(number) {
     let prefilled = [];
-    while(prefilled.length < 17) {
+    while(prefilled.length < number) {
         let rowIndex = Math.floor(Math.random() * 9);
         let colIndex = Math.floor(Math.random() * 9);
         while(this.checkDuplicate(prefilled, [rowIndex, colIndex])) {
@@ -183,12 +183,13 @@ const Mixin = {
 
   verifyValue(sudoku) {
     let errors = [];
+    let axisArr = {};
     
     for (var i = 0; i < sudoku.length; i++) {
         let rowArr = [];
         let colArr = {};
         for (var j = 0; j < sudoku.length; j++) {
-            
+
             if (sudoku[i][j] !== '') {
                 // Verify row
                 if (rowArr.indexOf(sudoku[i][j]) === -1) {
@@ -208,11 +209,25 @@ const Mixin = {
                     errors.push([colArr[sudoku[j][i]], i]);
                 }
             }
-            
+
+            if (sudoku[i][j] !== '') { 
+                // Verify Nine Block
+                let axis = checkAxis({row: i, col: j});
+                if (axisArr[axis]) {
+                    if (this.checkDuplicate(axisArr[axis], [i, j])) {
+                        errors.push([i, j]);
+                        // errors.push([, ])
+                    } else {
+                        axisArr[axis].push([i, j]);
+                    }
+                } else {
+                    axisArr[axis] = [[i, j]];
+                }
+            }
+
         }
     }
     
-
     // console.log(errors);
     return errors;
   }

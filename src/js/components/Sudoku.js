@@ -20,15 +20,16 @@ export default class Sudoku extends Component {
   componentDidMount() {
     let prefilledArr = Util.generatePrefilled(this.state.prefilled);
     let newSudoku = Util.newSudoku();
-    let currentSudoku = newSudoku.map((row, rowIndex) => {
-      row.map((value, index) => {
+    let currentSudoku = newSudoku.slice();
+    newSudoku.forEach((row, rowIndex) => {
+      row.forEach((value, index) => {
         if (!Util.checkDuplicate(prefilledArr, [rowIndex, index])) {
-          row[index] = ''; 
+          currentSudoku[rowIndex][index] = ''; 
         }
-        return value;
       })
-      return row;
     });
+    console.log(newSudoku);
+    console.log(currentSudoku);
     this.setState({
       sudoku: newSudoku,
       prefilledArr: prefilledArr,
@@ -42,7 +43,7 @@ export default class Sudoku extends Component {
 
   update(value, position) {
     let currentSudoku = this.state.currentSudoku;
-    
+
     currentSudoku[position.row][position.col] = value;
     
     let errors = Util.verifyValue(currentSudoku);

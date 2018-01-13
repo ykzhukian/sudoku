@@ -6,18 +6,28 @@
 .sudoku {
 	
 	border-collapse: collapse;
-	border: 1px solid $main-color;
+	border: $border-soduku-bold;
 
 	tr:not(:last-child) {
-		border-bottom: 1px solid $main-color;
+		border-bottom: $border-soduku;
+	}
+
+	tr:nth-child(3n):not(:last-child) {
+		td {
+			border-bottom: $border-soduku;
+		}
+	}
+
+	td:nth-child(3n):not(:last-child) {
+		border-right: $border-soduku-bold;
 	}
 
 	tr:hover {
 		background-color: #eee;
 	}
 
-	td:not(:last-child) {
-		border-right: 1px solid $main-color;
+	td:not(:nth-child(3n)):not(:last-child) {
+		border-right: $border-soduku;
 	}
 
 	td, th {

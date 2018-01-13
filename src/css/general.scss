@@ -9,6 +9,9 @@ $secondary-color: #757575;
 $dark-red: #f74242;
 $error: #fc8585;
 
+$border-soduku: 1px solid $main-color;
+$border-soduku-bold: 2px solid $main-color;
+
 html, body {
 	margin: 0;
 	font-family: 'Dosis', sans-serif;

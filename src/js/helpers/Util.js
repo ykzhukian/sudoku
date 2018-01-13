@@ -118,6 +118,16 @@ function checkAxis(position) {
 
 }
 
+function checkAxisDuplicate(arr, item) {
+    let position = [];
+    for (var i = arr.length - 1; i >= 0; i--) {
+        if (arr[i][0] === item) {
+            position = [arr[i][1], arr[i][2]];
+       }
+    }
+    return position;
+}
+
 const Mixin = {
   newSudoku() {
     // console.log('-------------------- Sudoku ----------------------');
@@ -214,14 +224,15 @@ const Mixin = {
                 // Verify Nine Block
                 let axis = checkAxis({row: i, col: j});
                 if (axisArr[axis]) {
-                    if (this.checkDuplicate(axisArr[axis], [i, j])) {
+                    let position = checkAxisDuplicate(axisArr[axis], sudoku[i][j])
+                    if (position.length > 0) {
                         errors.push([i, j]);
-                        // errors.push([, ])
+                        errors.push([position[0], position[1]]);
                     } else {
-                        axisArr[axis].push([i, j]);
+                        axisArr[axis].push([sudoku[i][j], i, j]);
                     }
                 } else {
-                    axisArr[axis] = [[i, j]];
+                    axisArr[axis] = [[sudoku[i][j], i, j]];
                 }
             }
 

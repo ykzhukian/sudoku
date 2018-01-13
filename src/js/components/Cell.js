@@ -43,7 +43,7 @@ export default class Cell extends Component {
           type="text" 
           value={this.state.value} 
           maxLength="1"
-          readOnly={!this.state.activated}
+          disabled={!this.state.activated}
           onChange={e => this.onChange(e)} />
       </td>
     );

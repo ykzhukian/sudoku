@@ -19,9 +19,11 @@ export default class Sudoku extends Component {
 
   componentDidMount() {
     let prefilledArr = Util.generatePrefilled(this.state.prefilled);
+
     let newSudoku = Util.newSudoku();
     let currentSudoku = newSudoku.slice();
     newSudoku.forEach((row, rowIndex) => {
+      currentSudoku[rowIndex] = newSudoku[rowIndex].slice();
       row.forEach((value, index) => {
         if (!Util.checkDuplicate(prefilledArr, [rowIndex, index])) {
           currentSudoku[rowIndex][index] = ''; 

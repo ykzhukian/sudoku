@@ -56,7 +56,6 @@ export default class Sudoku extends Component {
     })
   }
 
-
   render() {
 
     let sudoku = this.state.currentSudoku;
@@ -74,9 +73,7 @@ export default class Sudoku extends Component {
               row: rowIndex,
               col: index
             }} 
-            updateSudoku={ (value, position) => this.update(value, position) } 
-            showColor={() => this.props.showColor()} 
-            hideColor={() => this.props.hideColor()} /> 
+            updateSudoku={ (value, position) => this.update(value, position) } /> 
         ))}
       </tr>
     ))

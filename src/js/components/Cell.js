@@ -11,7 +11,8 @@ export default class Cell extends Component {
       value: this.props.data.activated ? '' : this.props.data.value,
       correctValue: this.props.data.value,
       row: this.props.data.row,
-      col: this.props.data.col
+      col: this.props.data.col,
+      color: ''
     }
   }
 
@@ -32,13 +33,11 @@ export default class Cell extends Component {
   }
 
   onFocus(event) {
-    console.log(this.state.row, ' ',this.state.col);
-    this.props.showColor();
+    console.log('due clicked');
   }
 
   onBlur(event) {
-    console.log('blur: ' + this.state.row + ' ' + this.state.col);
-    this.props.hideColor();
+
   }
 
 
@@ -55,7 +54,7 @@ export default class Cell extends Component {
           maxLength="1"
           disabled={!this.state.activated}
           onChange={e => this.onChange(e)} 
-          onFocus={e => this.onFocus(e)} 
+          onDoubleClick={e => this.onFocus(e)} 
           onBlur={e => this.onBlur(e)} />
       </td>
     );

@@ -7,10 +7,10 @@ export default class ColorPicker extends Component {
 
     return (
       <div className="colors">
-      	<h3 className="colors-title">Mark As</h3>
+      	<h3 className="colors-title">Mark</h3>
 				<Color value="aff7b0" />
-				<Color value="42bcf4" />
-				<Color value="f9de7a" />
+				{/*<Color value="42bcf4" />
+				<Color value="f9de7a" />*/}
       </div>
     );
   }

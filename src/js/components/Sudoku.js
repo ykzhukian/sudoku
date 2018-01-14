@@ -74,7 +74,9 @@ export default class Sudoku extends Component {
               row: rowIndex,
               col: index
             }} 
-            updateSudoku={ (value, position) => this.update(value, position) } /> 
+            updateSudoku={ (value, position) => this.update(value, position) } 
+            showColor={() => this.props.showColor()} 
+            hideColor={() => this.props.hideColor()} /> 
         ))}
       </tr>
     ))

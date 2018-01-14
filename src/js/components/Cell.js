@@ -31,6 +31,16 @@ export default class Cell extends Component {
     }
   }
 
+  onFocus(event) {
+    console.log(this.state.row, ' ',this.state.col);
+    this.props.showColor();
+  }
+
+  onBlur(event) {
+    console.log('blur: ' + this.state.row + ' ' + this.state.col);
+    this.props.hideColor();
+  }
+
 
   render() {
 
@@ -44,7 +54,9 @@ export default class Cell extends Component {
           value={this.state.value} 
           maxLength="1"
           disabled={!this.state.activated}
-          onChange={e => this.onChange(e)} />
+          onChange={e => this.onChange(e)} 
+          onFocus={e => this.onFocus(e)} 
+          onBlur={e => this.onBlur(e)} />
       </td>
     );
   }

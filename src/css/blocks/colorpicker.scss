@@ -1,0 +1,25 @@
+.colors {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	.colors-title {
+		text-align: center;
+	}
+
+	.color {
+		width: 20px;
+		height: 20px;
+		background-color: #96daf7;
+		margin: 10px auto;
+		cursor: pointer;
+	}
+
+	.color[data-color="f9de7a"] {
+		background-color: #f9de7a;
+	}
+
+	.color[data-color="aff7b0"] {
+		background-color: #aff7b0;
+	}
+}

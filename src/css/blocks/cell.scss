@@ -25,6 +25,9 @@
 
 	&.flag {
 		background-color: $flag-color;
+		input {
+			color: #fff;
+		}
 	}
 }
 

@@ -10,7 +10,6 @@ export default class Sudoku extends Component {
     super(props);
     this.state = {
       sudoku: '',
-      prefilled: this.props.prefilled,
       prefilledArr: '',
       currentSudoku: '',
       errors: []
@@ -18,7 +17,7 @@ export default class Sudoku extends Component {
   }
 
   componentDidMount() {
-    let prefilledArr = Util.generatePrefilled(this.state.prefilled);
+    let prefilledArr = Util.generatePrefilled(this.props.prefilled);
 
     let newSudoku = Util.newSudoku();
     let currentSudoku = newSudoku.slice();
@@ -30,13 +29,13 @@ export default class Sudoku extends Component {
         }
       })
     });
-    console.log(newSudoku);
-    console.log(currentSudoku);
-    this.setState({
-      sudoku: newSudoku,
-      prefilledArr: prefilledArr,
-      currentSudoku: currentSudoku
-    });
+    // console.log(newSudoku);
+    // console.log(currentSudoku);
+    // this.setState({
+    //   sudoku: newSudoku,
+    //   prefilledArr: prefilledArr,
+    //   currentSudoku: currentSudoku
+    // });
   }
 
   verify(value, position) {
@@ -58,17 +57,29 @@ export default class Sudoku extends Component {
 
   render() {
 
-    let sudoku = this.state.currentSudoku;
-    const sudokuBlock = sudoku.length
+    let prefilledArr = Util.generatePrefilled(this.props.prefilled);
+
+    let newSudoku = Util.newSudoku();
+    let currentSudoku = newSudoku.slice();
+    newSudoku.forEach((row, rowIndex) => {
+      currentSudoku[rowIndex] = newSudoku[rowIndex].slice();
+      row.forEach((value, index) => {
+        if (!Util.checkDuplicate(prefilledArr, [rowIndex, index])) {
+          currentSudoku[rowIndex][index] = ''; 
+        }
+      })
+    });
+
+    let sudokuBlock = currentSudoku.length
     ?
-    sudoku.map((row, rowIndex) => (
+    currentSudoku.map((row, rowIndex) => (
       <tr className="sudoku-row" key={rowIndex}>
         {row.map((value, index) => (
           <Cell 
             key={index} 
             data={{
-              value: Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) ? value : '',
-              activated: !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]),
+              value: Util.checkDuplicate(prefilledArr, [rowIndex, index]) ? value : '',
+              activated: !Util.checkDuplicate(prefilledArr, [rowIndex, index]),
               errors: this.state.errors,
               row: rowIndex,
               col: index

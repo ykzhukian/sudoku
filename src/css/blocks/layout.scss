@@ -25,3 +25,15 @@
 .title {
 	text-align: center;
 }
+
+.info-text {
+	text-align: center;
+	margin-top:10px;
+
+	&.difficulty {
+		span {
+			cursor: pointer;
+			margin: 0 5px;
+		}
+	}
+}

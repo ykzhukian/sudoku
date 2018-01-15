@@ -13,6 +13,7 @@ export default class Index extends Component {
             prefilled={40} 
             showColor={(position) => this.showColor(position)}
             hideColor={() => this.hideColor()} />
+          <h3 className="title">Double click a cell to flag.</h3>
         </div>
         {/*<div className="wrapper tools">
           <div className="tools-wrapper">

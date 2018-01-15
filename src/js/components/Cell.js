@@ -12,7 +12,7 @@ export default class Cell extends Component {
       correctValue: this.props.data.value,
       row: this.props.data.row,
       col: this.props.data.col,
-      color: ''
+      flag: false
     }
   }
 
@@ -32,8 +32,10 @@ export default class Cell extends Component {
     }
   }
 
-  onFocus(event) {
-    console.log('due clicked');
+  onDoubleClick(event) {
+    this.setState({
+      flag: !this.state.flag
+    })
   }
 
   onBlur(event) {
@@ -46,7 +48,13 @@ export default class Cell extends Component {
     let error = Util.checkDuplicate(this.props.data.errors, [this.props.data.row, this.props.data.col]);
 
     return (
-      <td className={"cell-block " + (error ? 'error ' : '') + (this.state.activated ? '' : 'prefilled')}>
+      <td 
+        className={
+          "cell-block " + 
+          (error ? 'error ' : '') + 
+          (this.state.activated ? '' : 'prefilled ') +
+          (this.state.flag ? 'flag' : '' )
+        }>
         <input
           className="cell-input" 
           type="text" 
@@ -54,7 +62,7 @@ export default class Cell extends Component {
           maxLength="1"
           disabled={!this.state.activated}
           onChange={e => this.onChange(e)} 
-          onDoubleClick={e => this.onFocus(e)} 
+          onDoubleClick={e => this.onDoubleClick(e)} 
           onBlur={e => this.onBlur(e)} />
       </td>
     );

@@ -22,6 +22,10 @@
 		color: #fff;
 		background-color: $dark-red;
 	}
+
+	&.flag {
+		background-color: $flag-color;
+	}
 }
 
 .cell-input {

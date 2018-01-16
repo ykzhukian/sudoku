@@ -44,7 +44,7 @@ export default class Sudoku extends Component {
       currentSudoku: currentSudoku,
       errors: [],
       initial: true
-    }, () => {console.log(this.state.currentSudoku)});
+    });
   }
 
   verify(value, position) {
@@ -62,7 +62,7 @@ export default class Sudoku extends Component {
       currentSudoku: currentSudoku,
       errors: errors,
       initial: false
-    }, () => {console.log(this.state.currentSudoku)})
+    });
   }
 
   render() {

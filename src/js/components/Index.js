@@ -14,7 +14,6 @@ export default class Index extends Component {
     this.setState({
       difficulty: value
     })
-    console.log(value);
   }
 
 

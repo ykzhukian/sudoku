@@ -194,11 +194,16 @@ const Mixin = {
   verifyValue(sudoku) {
     let errors = [];
     let axisArr = {};
+    let hasEmpty = false;
     
     for (var i = 0; i < sudoku.length; i++) {
         let rowArr = [];
         let colArr = {};
         for (var j = 0; j < sudoku.length; j++) {
+
+            if (sudoku[i][j] === '') {
+                hasEmpty = true;
+            }
 
             if (sudoku[i][j] !== '') {
                 // Verify row

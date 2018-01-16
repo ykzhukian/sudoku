@@ -5,6 +5,18 @@
 	justify-content: space-around;
 }
 
+.content-container {
+	display: flex;
+	justify-content: space-around;
+
+	.sudoku-container {
+		flex-grow: 1;
+		display: flex;
+		justify-content: center;
+		flex-direction: column;
+	}
+}
+
 .wrapper {
 	display: flex;
 	flex-direction: column;
@@ -15,11 +27,12 @@
 	
 	.tools-wrapper {
 		height: 100%;
-		width: 200px;
+		width: 250px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 	}
+	
 }
 
 .title {
@@ -29,15 +42,17 @@
 .info-text {
 	text-align: center;
 	margin-top:10px;
+}
 
-	&.difficulty {
+.difficulty {
+	display: flex;
+	
 		span {
 			cursor: pointer;
 			margin: 0 5px;
 
 			&.active {
-				text-decoration: underline;
+				border-bottom: 2px solid $main-color;
 			}
 		}
 	}
-}

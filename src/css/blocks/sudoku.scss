@@ -49,3 +49,14 @@
 .sudoku-row {
 	display: flex;
 }
+
+.restore-list {
+
+	.restore-sudoku {
+		border: 1px solid $main-color;
+		height: 100px;
+		width: 100px;
+		margin: 0 auto 20px auto;
+		cursor: pointer;
+	}
+}

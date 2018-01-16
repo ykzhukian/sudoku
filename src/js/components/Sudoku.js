@@ -28,6 +28,10 @@ export default class Sudoku extends Component {
     }
   }
 
+  flag() {
+
+  }
+
   initialiseSudoku(props) {
     let prefilledArr = Util.generatePrefilled(props.prefilled);
 
@@ -95,10 +99,41 @@ export default class Sudoku extends Component {
     : (<tr><td>Loading...</td></tr>);
     
     return (
-      <div className='sudoku-wrapper'>
-        <table className="sudoku">
-          <tbody>{sudokuBlock}</tbody>
-        </table>
+      <div className="content-container">
+
+        <div className="sudoku-container">
+          <h1 className="title">
+            {this.props.finished ? 'You Win!' : 'Playing Sudoku'}
+          </h1>
+        
+          <div className='sudoku-wrapper'>
+            <table className="sudoku">
+              <tbody>{sudokuBlock}</tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="wrapper">
+          <div className="tools-wrapper">
+            <h3 className="info-text">Tools</h3>
+            <div className="clear-btn">> Clear (except flagged cells)</div>
+            <div className="clear-btn">> Save current progress</div>
+            <div className="">> Double click a cell to flag.</div>
+            <h3 className="info-text">Restore from saved</h3>
+            <div className="restore-list">
+              <div className="restore-sudoku"></div>
+              <div className="restore-sudoku"></div>
+            </div>
+            <h4 className="info-text">Change Difficulty</h4>
+            <div className="difficulty">
+              <span className={this.props.prefilled === 45 ? 'active' : ''} onClick={(e) => this.props.changeDifficulty(e, 45)} >Beginner</span>
+              <span className={this.props.prefilled === 35 ? 'active' : ''} onClick={(e) => this.props.changeDifficulty(e, 35)} >Normal</span>
+              <span className={this.props.prefilled === 25 ? 'active' : ''} onClick={(e) => this.props.changeDifficulty(e, 25)} >Hard</span>
+              <span className={this.props.prefilled === 17 ? 'active' : ''} onClick={(e) => this.props.changeDifficulty(e, 17)} >Challenging</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     );
   }

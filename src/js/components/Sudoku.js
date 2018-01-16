@@ -3,6 +3,7 @@ import Cell from './Cell';
 
 import ReactMixin from 'react-mixin';
 import Util from '../helpers/Util';
+import '../helpers/Fireworks.js';
 
 export default class Sudoku extends Component {
 
@@ -22,7 +23,9 @@ export default class Sudoku extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.initialiseSudoku(nextProps);
+    if (!nextProps.finished) {
+      this.initialiseSudoku(nextProps);
+    }
   }
 
   initialiseSudoku(props) {
@@ -57,12 +60,16 @@ export default class Sudoku extends Component {
     currentSudoku[position.row][position.col] = value;
     
     let errors = Util.verifyValue(currentSudoku);
-    
+
     this.setState({
       currentSudoku: currentSudoku,
       errors: errors,
       initial: false
     });
+
+    if (errors === 'finished') {
+      this.props.win();
+    }
   }
 
   render() {
@@ -76,7 +83,7 @@ export default class Sudoku extends Component {
             key={index} 
             data={{
               value: value,
-              activated: !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]),
+              activated: !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) && !this.props.finished,
               errors: this.state.errors,
               row: rowIndex,
               col: index

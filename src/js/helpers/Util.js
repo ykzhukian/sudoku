@@ -243,9 +243,13 @@ const Mixin = {
 
         }
     }
+
+    if (!hasEmpty && errors.length === 0) {
+        return 'finished';
+    } else {
+        return errors;
+    }
     
-    // console.log(errors);
-    return errors;
   }
 };
 

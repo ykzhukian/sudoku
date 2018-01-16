@@ -23,7 +23,7 @@ export default class Cell extends Component {
       if (!value) {
         value = '';
       }
-      this.setState({value: value});
+      this.setState({value: value, flag: false});
       this.props.updateSudoku(value, {row: this.state.row, col: this.state.col});
     }
   }

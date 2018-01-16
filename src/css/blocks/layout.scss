@@ -27,7 +27,7 @@
 	
 	.tools-wrapper {
 		height: 100%;
-		width: 250px;
+		width: 300px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -41,12 +41,26 @@
 
 .info-text {
 	text-align: center;
-	margin-top:10px;
+	margin-bottom: 10px;
+}
+
+.btn {
+	cursor: pointer;
+
+	span {
+		visibility: hidden;
+	}
+
+	&:hover {
+		span {
+			visibility: visible;
+		}
+	}
 }
 
 .difficulty {
 	display: flex;
-	
+
 		span {
 			cursor: pointer;
 			margin: 0 5px;

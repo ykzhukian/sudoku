@@ -34,6 +34,10 @@
 		span {
 			cursor: pointer;
 			margin: 0 5px;
+
+			&.active {
+				text-decoration: underline;
+			}
 		}
 	}
 }

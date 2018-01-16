@@ -14,6 +14,7 @@ export default class Index extends Component {
     this.setState({
       difficulty: value
     })
+    console.log(value);
   }
 
 
@@ -24,9 +25,7 @@ export default class Index extends Component {
       	<div className="wrapper main-wrapper">
 	      	<h1 className="title">Playing Sudoku</h1>
 	        <Sudoku 
-            prefilled={this.state.difficulty} 
-            showColor={(position) => this.showColor(position)}
-            hideColor={() => this.hideColor()} />
+            prefilled={this.state.difficulty} />
           <div className="info-text">Double click a cell to flag.</div>
           <div className="info-text difficulty">
             Change Difficulty:

@@ -12,12 +12,21 @@ export default class Sudoku extends Component {
       sudoku: '',
       prefilledArr: '',
       currentSudoku: '',
-      errors: []
+      errors: [],
+      initial: false
     };
   }
 
-  componentDidMount() {
-    let prefilledArr = Util.generatePrefilled(this.props.prefilled);
+  componentWillMount() {
+    this.initialiseSudoku(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.initialiseSudoku(nextProps);
+  }
+
+  initialiseSudoku(props) {
+    let prefilledArr = Util.generatePrefilled(props.prefilled);
 
     let newSudoku = Util.newSudoku();
     let currentSudoku = newSudoku.slice();
@@ -29,13 +38,13 @@ export default class Sudoku extends Component {
         }
       })
     });
-    // console.log(newSudoku);
-    // console.log(currentSudoku);
-    // this.setState({
-    //   sudoku: newSudoku,
-    //   prefilledArr: prefilledArr,
-    //   currentSudoku: currentSudoku
-    // });
+    this.setState({
+      sudoku: newSudoku,
+      prefilledArr: prefilledArr,
+      currentSudoku: currentSudoku,
+      errors: [],
+      initial: true
+    }, () => {console.log(this.state.currentSudoku)});
   }
 
   verify(value, position) {
@@ -51,35 +60,23 @@ export default class Sudoku extends Component {
     
     this.setState({
       currentSudoku: currentSudoku,
-      errors: errors
-    })
+      errors: errors,
+      initial: false
+    }, () => {console.log(this.state.currentSudoku)})
   }
 
   render() {
 
-    let prefilledArr = Util.generatePrefilled(this.props.prefilled);
-
-    let newSudoku = Util.newSudoku();
-    let currentSudoku = newSudoku.slice();
-    newSudoku.forEach((row, rowIndex) => {
-      currentSudoku[rowIndex] = newSudoku[rowIndex].slice();
-      row.forEach((value, index) => {
-        if (!Util.checkDuplicate(prefilledArr, [rowIndex, index])) {
-          currentSudoku[rowIndex][index] = ''; 
-        }
-      })
-    });
-
-    let sudokuBlock = currentSudoku.length
+    const sudokuBlock = this.state.currentSudoku.length
     ?
-    currentSudoku.map((row, rowIndex) => (
+    this.state.currentSudoku.map((row, rowIndex) => (
       <tr className="sudoku-row" key={rowIndex}>
         {row.map((value, index) => (
           <Cell 
             key={index} 
             data={{
-              value: Util.checkDuplicate(prefilledArr, [rowIndex, index]) ? value : '',
-              activated: !Util.checkDuplicate(prefilledArr, [rowIndex, index]),
+              value: Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) || !this.state.initial ? value : '',
+              activated: !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]),
               errors: this.state.errors,
               row: rowIndex,
               col: index
@@ -88,7 +85,7 @@ export default class Sudoku extends Component {
         ))}
       </tr>
     ))
-    : (<tr><td>'Loading...'</td></tr>);
+    : (<tr><td>Loading...</td></tr>);
     
     return (
       <div className='sudoku-wrapper'>

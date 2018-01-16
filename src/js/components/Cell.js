@@ -16,10 +16,6 @@ export default class Cell extends Component {
     }
   }
 
-  componentDidMount() {
-
-  }
-
   onChange(event) {
     const numbers = new RegExp("[0-9]");
     let value = parseInt(event.target.value, 10);
@@ -38,32 +34,26 @@ export default class Cell extends Component {
     })
   }
 
-  onBlur(event) {
-
-  }
-
-
   render() {
 
-    let error = Util.checkDuplicate(this.props.data.errors, [this.props.data.row, this.props.data.col]);
+    let error = Util.checkDuplicate(this.props.data.errors, [this.state.row, this.state.col]);
 
     return (
       <td 
         className={
           "cell-block " + 
           (error ? 'error ' : '') + 
-          (this.state.activated ? '' : 'prefilled ') +
+          (this.props.data.activated ? '' : 'prefilled ') +
           (this.state.flag ? 'flag' : '' )
         }>
         <input
           className="cell-input" 
           type="text" 
-          value={this.state.value} 
+          value={this.props.data.value} 
           maxLength="1"
-          disabled={!this.state.activated}
+          disabled={!this.props.data.activated}
           onChange={e => this.onChange(e)} 
-          onDoubleClick={e => this.onDoubleClick(e)} 
-          onBlur={e => this.onBlur(e)} />
+          onDoubleClick={e => this.onDoubleClick(e)} />
       </td>
     );
   }

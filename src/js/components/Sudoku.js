@@ -75,7 +75,7 @@ export default class Sudoku extends Component {
           <Cell 
             key={index} 
             data={{
-              value: Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) || !this.state.initial ? value : '',
+              value: value,
               activated: !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]),
               errors: this.state.errors,
               row: rowIndex,

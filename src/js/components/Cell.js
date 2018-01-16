@@ -19,7 +19,7 @@ export default class Cell extends Component {
   onChange(event) {
     const numbers = new RegExp("[0-9]");
     let value = parseInt(event.target.value, 10);
-    if (this.state.activated && (numbers.test(value) || !value)) {
+    if (this.props.data.activated && (numbers.test(value) || !value)) {
       if (!value) {
         value = '';
       }

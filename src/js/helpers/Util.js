@@ -250,6 +250,15 @@ const Mixin = {
         return errors;
     }
     
+  },
+
+  removeFromArr(array, item) {
+    for (var i = array.length - 1; i >= 0; i--) {
+        if (item[0] === array[i][0] && item[1] === array[i][1]) {
+            array.splice(i, 1);
+        }
+    }
+    return array;
   }
 };
 

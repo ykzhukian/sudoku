@@ -14,7 +14,8 @@ export default class Sudoku extends Component {
       prefilledArr: '',
       currentSudoku: '',
       errors: [],
-      initial: false
+      initial: false,
+      flags: []
     };
   }
 
@@ -28,8 +29,40 @@ export default class Sudoku extends Component {
     }
   }
 
-  flag() {
+  addFlag(position) {
+    let flags = this.state.flags;
+    flags.push([position.row, position.col]);
+    this.setState({
+      flags: flags
+    })
+  }
 
+  removeFlag(position) {
+    let flags = this.state.flags;
+    Util.removeFromArr(flags,[position.row, position.col]);
+    console.log(flags);
+    this.setState({
+      flags: flags
+    })
+  }
+
+  clear() {
+    let currentSudoku = this.state.currentSudoku;
+    currentSudoku.forEach((row, rowIndex) => {
+      row.forEach((value, index) => {
+        if (
+            !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) &&
+            !Util.checkDuplicate(this.state.flags, [rowIndex, index])
+          ) {
+          currentSudoku[rowIndex][index] = ''; 
+        }
+      })
+    });
+    let errors = Util.verifyValue(currentSudoku);
+    this.setState({
+      currentSudoku: currentSudoku,
+      errors: errors
+    });
   }
 
   initialiseSudoku(props) {
@@ -90,9 +123,12 @@ export default class Sudoku extends Component {
               activated: !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) && !this.props.finished,
               errors: this.state.errors,
               row: rowIndex,
-              col: index
+              col: index,
+              flag: Util.checkDuplicate(this.state.flags, [rowIndex, index])
             }} 
-            updateSudoku={ (value, position) => this.update(value, position) } /> 
+            updateSudoku={ (value, position) => this.update(value, position) } 
+            removeFlag={ (value, position) => this.removeFlag(value, position) } 
+            addFlag={ (position) => this.addFlag(position) }/> 
         ))}
       </tr>
     ))
@@ -116,9 +152,11 @@ export default class Sudoku extends Component {
         <div className="wrapper">
           <div className="tools-wrapper">
             <h3 className="info-text">Tools</h3>
-            <div className="info-text btn"><span>></span> Clear (except flagged cells)</div>
+            <div 
+              className="info-text btn"
+              onClick={() => this.clear()}><span>></span> Clear (except flagged cells)</div>
             <div className="info-text btn"><span>></span> Save current progress</div>
-            <div className="info-text">Double click a cell to flag.</div>
+            <div className="info-text">Double click a filled cell to flag.</div>
             <h3 className="info-text">Restore from saved</h3>
             <div className="restore-list">
               <div className="restore-sudoku"></div>

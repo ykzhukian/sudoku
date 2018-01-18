@@ -7,8 +7,6 @@ export default class Cell extends Component {
     super(props)
   
     this.state = {
-      activated: this.props.data.activated,
-      value: this.props.data.activated ? '' : this.props.data.value,
       correctValue: this.props.data.value,
       row: this.props.data.row,
       col: this.props.data.col,
@@ -24,14 +22,22 @@ export default class Cell extends Component {
         value = '';
       }
       this.setState({value: value, flag: false});
+      this.props.removeFlag({row: this.state.row, col: this.state.col});
       this.props.updateSudoku(value, {row: this.state.row, col: this.state.col});
     }
   }
 
   onDoubleClick(event) {
-    this.setState({
-      flag: !this.state.flag
-    })
+    if (this.props.data.value !== '') {
+      if (!this.state.flag) {
+        this.props.addFlag({row: this.state.row, col: this.state.col});
+      } else {
+        this.props.removeFlag({row: this.state.row, col: this.state.col});
+      }
+      this.setState({
+        flag: !this.state.flag
+      })
+    }
   }
 
   render() {

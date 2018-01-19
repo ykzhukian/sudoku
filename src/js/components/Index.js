@@ -27,7 +27,7 @@ export default class Index extends Component {
   render() {
 
     return (
-      <div className="container">
+      <div className="container" id="container">
       	<div className="wrapper main-wrapper">
 	        <Sudoku 
             prefilled={this.state.difficulty}

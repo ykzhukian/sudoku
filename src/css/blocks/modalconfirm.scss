@@ -1,0 +1,35 @@
+.dialog-confirm {
+
+	position: fixed;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX( -50%);
+	background-color: #fff;
+	z-index: 9999;
+	padding: 0 50px 10px 50px;
+
+	-webkit-box-shadow: 2px 2px 26px -6px rgba(0,0,0,0.22);
+	-moz-box-shadow: 2px 2px 26px -6px rgba(0,0,0,0.22);
+	box-shadow: 2px 2px 26px -6px rgba(0,0,0,0.22);
+	text-align: center;
+
+	.dialog-confirm-title {
+		margin: 10px 0;
+	}
+
+	.controls {
+
+		max-width: 120px;
+		display: flex;
+		justify-content: space-between;
+		margin: auto;
+
+		div {
+			display: inline;
+			cursor: pointer;
+			text-align: center;
+		}
+
+	}
+
+}

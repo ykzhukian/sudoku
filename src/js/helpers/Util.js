@@ -1,3 +1,4 @@
+import $ from 'jquery'
 const SEED_SUDOKU = [
 	[8, 7, 4, 6, 3, 1, 5, 9, 2],
 	[5, 9, 6, 7, 2, 8, 4, 3, 1],
@@ -259,7 +260,30 @@ const Mixin = {
         }
     }
     return array;
-  }
+  },
+
+  confirm(msg, callback) { /*change*/
+    var $content =  "<div class='dialog-confirm'>" +
+                         "<h3 class='dialog-confirm-title'> " + msg + " </h3>" +
+                         "<div class='controls'>" +
+                             " <div class='doAction'>Go On</div> " +
+                             " <div class='cancelAction'>Cancel</div> " +
+                         "</div>" +
+                    "</div>";
+    $($content).prependTo('#container').hide().slideDown(200);
+    $('.doAction').click(function () {
+        callback();
+        $(this).parents('.dialog-confirm').slideUp(100, function () {
+          $(this).remove();
+        });
+    });
+    $('.cancelAction').click(function () {
+        $(this).parents('.dialog-confirm').slideUp(100, function () {
+          $(this).remove();
+        });
+    });
+      
+   }
 };
 
 

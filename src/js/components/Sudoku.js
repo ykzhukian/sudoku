@@ -38,31 +38,37 @@ export default class Sudoku extends Component {
   }
 
   removeFlag(position) {
-    let flags = this.state.flags;
-    Util.removeFromArr(flags,[position.row, position.col]);
-    console.log(flags);
-    this.setState({
-      flags: flags
-    })
+    Util.confirm("Cannot redo clear", function(){
+      console.log('removed');
+    });
+    // let flags = this.state.flags;
+    // Util.removeFromArr(flags,[position.row, position.col]);
+    // console.log(flags);
+    // this.setState({
+    //   flags: flags
+    // })
   }
 
   clear() {
-    let currentSudoku = this.state.currentSudoku;
-    currentSudoku.forEach((row, rowIndex) => {
-      row.forEach((value, index) => {
-        if (
-            !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) &&
-            !Util.checkDuplicate(this.state.flags, [rowIndex, index])
-          ) {
-          currentSudoku[rowIndex][index] = ''; 
-        }
-      })
+    Util.confirm("Cannot redo clear", function(){
+      console.log('cleared');
     });
-    let errors = Util.verifyValue(currentSudoku);
-    this.setState({
-      currentSudoku: currentSudoku,
-      errors: errors
-    });
+    // let currentSudoku = this.state.currentSudoku;
+    // currentSudoku.forEach((row, rowIndex) => {
+    //   row.forEach((value, index) => {
+    //     if (
+    //         !Util.checkDuplicate(this.state.prefilledArr, [rowIndex, index]) &&
+    //         !Util.checkDuplicate(this.state.flags, [rowIndex, index])
+    //       ) {
+    //       currentSudoku[rowIndex][index] = ''; 
+    //     }
+    //   })
+    // });
+    // let errors = Util.verifyValue(currentSudoku);
+    // this.setState({
+    //   currentSudoku: currentSudoku,
+    //   errors: errors
+    // });
   }
 
   initialiseSudoku(props) {

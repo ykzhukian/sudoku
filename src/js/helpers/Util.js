@@ -284,10 +284,6 @@ const Mixin = {
           $(this).remove();
         });
     });
-    $(document).click(function(event) {
-        event.preventDefault();
-        // $('.dialog-confirm').effect('shake');
-    })
       
    },
 
@@ -297,8 +293,6 @@ const Mixin = {
                 "</div>";
                 // $( "#toggle" ).toggle( "bounce", { times: 3 }, "slow" );
     $($content).prependTo('#container').hide().slideDown(200).delay(3000).slideUp(300);
-
-    
 
     setTimeout(function() {
       $( ".dialog-message" ).remove();

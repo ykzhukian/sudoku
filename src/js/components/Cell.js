@@ -37,6 +37,8 @@ export default class Cell extends Component {
       this.setState({
         flag: !this.state.flag
       })
+    } else if (this.props.data.value === '') {
+      Util.message("It's empty.");
     }
   }
 

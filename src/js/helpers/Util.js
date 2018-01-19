@@ -1,4 +1,6 @@
-import $ from 'jquery'
+import $ from 'jquery';
+import 'jquery-ui';
+
 const SEED_SUDOKU = [
 	[8, 7, 4, 6, 3, 1, 5, 9, 2],
 	[5, 9, 6, 7, 2, 8, 4, 3, 1],
@@ -282,8 +284,27 @@ const Mixin = {
           $(this).remove();
         });
     });
+    $(document).click(function(event) {
+        event.preventDefault();
+        // $('.dialog-confirm').effect('shake');
+    })
       
-   }
+   },
+
+  message(msg) { /*change*/
+    var $content =  "<div class='dialog-confirm dialog-message'>" +
+                     "<h3 class='dialog-confirm-title'> " + msg + " </h3>" +
+                "</div>";
+                // $( "#toggle" ).toggle( "bounce", { times: 3 }, "slow" );
+    $($content).prependTo('#container').hide().slideDown(200).delay(3000).slideUp(300);
+
+    
+
+    setTimeout(function() {
+      $( ".dialog-message" ).remove();
+    }, 3500);
+    
+  }
 };
 
 

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Sudoku from './Sudoku';
+import Util from '../helpers/Util';
 
 export default class Index extends Component {
 
@@ -12,9 +13,11 @@ export default class Index extends Component {
   }
 
   changeDifficulty(event, value) {
-    this.setState({
-      difficulty: value,
-      win: false
+    Util.confirm('It will lose the progress and start a new game.', () => {
+      this.setState({
+        difficulty: value,
+        win: false
+      })
     })
   }
 

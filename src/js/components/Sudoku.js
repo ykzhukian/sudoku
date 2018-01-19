@@ -4,6 +4,7 @@ import Cell from './Cell';
 import ReactMixin from 'react-mixin';
 import Util from '../helpers/Util';
 import '../helpers/Fireworks.js';
+import '../helpers/General.js';
 
 export default class Sudoku extends Component {
 

@@ -98,8 +98,20 @@ export default class Sudoku extends Component {
   }
 
   restore(sudoku) {
+
+    let toBeRestored = sudoku.slice();
+    sudoku.forEach((row, rowIndex) => {
+      toBeRestored[rowIndex] = sudoku[rowIndex].slice();
+      row.forEach((value, index) => {
+        toBeRestored[rowIndex][index] = value;
+      })
+    });
+
+    let errors = Util.verifyValue(toBeRestored);
+
     this.setState({
-      currentSudoku: sudoku
+      currentSudoku: toBeRestored,
+      errors: errors
     })
   }
 

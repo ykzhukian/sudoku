@@ -288,7 +288,7 @@ const Mixin = {
    },
 
   message(msg) { /*change*/
-    var $content =  "<div class='dialog-confirm dialog-message'>" +
+    const $content =  "<div class='dialog-confirm dialog-message'>" +
                      "<h3 class='dialog-confirm-title'> " + msg + " </h3>" +
                 "</div>";
                 // $( "#toggle" ).toggle( "bounce", { times: 3 }, "slow" );
@@ -298,7 +298,14 @@ const Mixin = {
       $( ".dialog-message" ).remove();
     }, 3500);
     
+  },
+
+  formatDate(timestamp) {
+    const date = new Date(timestamp);
+    const month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul","Aug", "Sep", "Oct", "Nov", "Dec"];
+    return date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + month[date.getMonth()] + ' ' + date.getDate() ;
   }
+
 };
 
 

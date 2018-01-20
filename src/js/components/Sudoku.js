@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import Cell from './Cell';
-
 import ReactMixin from 'react-mixin';
+
+import Cell from './Cell';
+import RestoreList from './RestoreList';
 import Util from '../helpers/Util';
+
 import '../helpers/Fireworks.js';
 import '../helpers/General.js';
 
@@ -16,7 +18,8 @@ export default class Sudoku extends Component {
       currentSudoku: '',
       errors: [],
       initial: false,
-      flags: []
+      flags: [],
+      saved: []
     };
   }
 
@@ -65,6 +68,21 @@ export default class Sudoku extends Component {
         errors: errors
       });
     });
+  }
+
+  save() {
+
+    let currentSudoku = this.state.currentSudoku;
+    let saved = this.state.saved;
+    let toBeSaved = {
+      time: Date.now(),
+      sudoku: currentSudoku
+    }
+    saved.push(toBeSaved)
+    this.setState({
+      saved: saved
+    }, () => {Util.message('Saved! You can restore this progress anytime.')})
+
   }
 
   initialiseSudoku(props) {
@@ -157,13 +175,12 @@ export default class Sudoku extends Component {
             <div 
               className="info-text btn"
               onClick={() => this.clear()}><span>></span> Clear (except flagged cells)</div>
-            <div className="info-text btn"><span>></span> Save current progress</div>
+            <div 
+              className="info-text btn"
+              onClick={() => this.save()}><span>></span> Save current progress</div>
             <div className="info-text">Double click a filled cell to flag.</div>
             <h3 className="info-text">Restore from saved</h3>
-            <div className="restore-list">
-              <div className="restore-sudoku"></div>
-              <div className="restore-sudoku"></div>
-            </div>
+            <RestoreList stores={this.state.saved}/>
             <h3 className="info-text">Change Difficulty</h3>
             <div className="difficulty">
               <span className={this.props.prefilled === 45 ? 'active' : ''} onClick={(e) => this.props.changeDifficulty(e, 45)} >Beginner</span>

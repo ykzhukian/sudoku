@@ -1,0 +1,30 @@
+.restore-list {
+
+	overflow-y: auto;
+	max-height: 230px;
+
+	.restore-no, .resotre-time {
+		text-align: center;
+		color:$secondary-color;
+		font-size: 12px;
+	}
+
+	.restore-sudoku {
+		border: 1px solid $main-color;
+		height: 60px;
+		width: 60px;
+		margin: 0 auto 10px auto;
+		cursor: pointer;
+
+		table {
+			
+			td {
+				height: 1px;
+				width: 1px;
+				padding: 0;
+				font-size: 2px;
+			}
+
+		}
+	}
+}

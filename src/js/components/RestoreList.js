@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Util from '../helpers/Util';
 import Restore from './Restore';
+import RestoreDetail from './RestoreDetail';
 
 
 export default class RestoreList extends Component {
@@ -16,11 +17,12 @@ export default class RestoreList extends Component {
     const restoreList = stores.length
     ?
     stores.map((store, index) => (
-      <div key={index}>
-        <div className="resotre-time">
+      <div key={index} className="restore-wrapper">
+        <div className="restore-time">
           {Util.formatDate(store.time)}
         </div>
-        <Restore sudoku={store.sudoku} />
+        <Restore sudokuIndex={index + ''} sudoku={store.sudoku} />
+        <RestoreDetail sudokuIndex={index + ''} sudoku={store.sudoku} />
       </div>
     ))
     :

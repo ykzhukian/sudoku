@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import Util from '../helpers/Util';
 
 
-export default class Restore extends Component {
+export default class RestoreDetail extends Component {
 
 	constructor(props) {
     super(props)
@@ -12,15 +12,15 @@ export default class Restore extends Component {
   render() {
 
     const sudoku = this.props.sudoku.map((row, rowIndex) => (
-        <div key={rowIndex} className="restore-sudoku-row">
+        <div key={rowIndex} className="restore-detail-row">
           {row.map((value, index) => (
-            <div key={index} className="restore-sudoku-value">{value === '' ? '' : '·'}</div>
+            <div key={index} className="restore-detail-value">{value}</div>
           ))}
         </div>
     ));
 
     return (
-      <div className="restore-sudoku" data-sudoku={this.props.sudokuIndex}>
+      <div className="restore-detail" data-detail={this.props.sudokuIndex}>
         {sudoku}
       </div>
     );

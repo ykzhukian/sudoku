@@ -71,18 +71,25 @@ export default class Sudoku extends Component {
   }
 
   save() {
-
     let currentSudoku = this.state.currentSudoku;
     let saved = this.state.saved;
+
+    let toBeSavedSudoku = currentSudoku.slice();
+    currentSudoku.forEach((row, rowIndex) => {
+      toBeSavedSudoku[rowIndex] = currentSudoku[rowIndex].slice();
+      row.forEach((value, index) => {
+        toBeSavedSudoku[rowIndex][index] = value;
+      })
+    });
+
     let toBeSaved = {
       time: Date.now(),
-      sudoku: currentSudoku
+      sudoku: toBeSavedSudoku
     }
-    saved.push(toBeSaved)
+    saved.push(toBeSaved);
     this.setState({
       saved: saved
     }, () => {Util.message('Saved! You can restore this progress anytime.')})
-
   }
 
   initialiseSudoku(props) {

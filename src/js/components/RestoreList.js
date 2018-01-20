@@ -19,7 +19,7 @@ export default class RestoreList extends Component {
     stores.map((store, index) => (
       <div key={index} className="restore-wrapper">
         <div className="restore-time">
-          {Util.formatDate(store.time)}
+          {index + 1}
         </div>
         <Restore sudokuIndex={index + ''} sudoku={store.sudoku} />
         <RestoreDetail sudokuIndex={index + ''} sudoku={store.sudoku} />

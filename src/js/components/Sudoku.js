@@ -74,6 +74,11 @@ export default class Sudoku extends Component {
     let currentSudoku = this.state.currentSudoku;
     let saved = this.state.saved;
 
+    if (saved.length > 8) {
+      Util.message('Can only save 9 progress. Delete a useless one.');
+      return;
+    }
+
     let toBeSavedSudoku = currentSudoku.slice();
     currentSudoku.forEach((row, rowIndex) => {
       toBeSavedSudoku[rowIndex] = currentSudoku[rowIndex].slice();

@@ -21,7 +21,7 @@ export default class RestoreList extends Component {
         <div className="restore-time">
           {index + 1}
         </div>
-        <Restore sudokuIndex={index + ''} sudoku={store.sudoku} />
+        <Restore restore={this.props.restore} sudokuIndex={index + ''} sudoku={store.sudoku} />
         <RestoreDetail sudokuIndex={index + ''} sudoku={store.sudoku} />
       </div>
     ))

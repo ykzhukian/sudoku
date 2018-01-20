@@ -97,6 +97,12 @@ export default class Sudoku extends Component {
     }, () => {Util.message('Saved! You can restore this progress anytime.')})
   }
 
+  restore(sudoku) {
+    this.setState({
+      currentSudoku: sudoku
+    })
+  }
+
   initialiseSudoku(props) {
     let prefilledArr = Util.generatePrefilled(props.prefilled);
 
@@ -192,7 +198,7 @@ export default class Sudoku extends Component {
               onClick={() => this.save()}><span>></span> Save current progress</div>
             <div className="info-text">Double click a filled cell to flag.</div>
             <h3 className="info-text">Restore from saved</h3>
-            <RestoreList stores={this.state.saved}/>
+            <RestoreList stores={this.state.saved} restore={(sudoku) => this.restore(sudoku)} />
             <h3 className="info-text">Change Difficulty</h3>
             <div className="difficulty">
               <span className={this.props.prefilled === 45 ? 'active' : ''} onClick={(e) => this.props.changeDifficulty(e, 45)} >Beginner</span>

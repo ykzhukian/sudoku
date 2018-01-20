@@ -9,6 +9,10 @@ export default class Restore extends Component {
     this.state = {}
   }
 
+  onClick(e) {
+    this.props.restore(this.props.sudoku);
+  }
+
   render() {
 
     const sudoku = this.props.sudoku.map((row, rowIndex) => (
@@ -20,7 +24,10 @@ export default class Restore extends Component {
     ));
 
     return (
-      <div className="restore-sudoku" data-sudoku={this.props.sudokuIndex}>
+      <div 
+        className="restore-sudoku" 
+        data-sudoku={this.props.sudokuIndex} 
+        onClick={(e) => this.onClick(e)} >
         {sudoku}
       </div>
     );

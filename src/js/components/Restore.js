@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Util from '../helpers/Util';
+import Util from '../helpers/Util';
 
 
 export default class Restore extends Component {
@@ -10,7 +10,9 @@ export default class Restore extends Component {
   }
 
   onClick(e) {
-    this.props.restore(this.props.sudoku);
+    Util.confirm('It will lose the current progress.', () => {
+      this.props.restore(this.props.sudoku);
+    })
   }
 
   render() {

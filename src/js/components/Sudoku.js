@@ -133,7 +133,8 @@ export default class Sudoku extends Component {
       prefilledArr: prefilledArr,
       currentSudoku: currentSudoku,
       errors: [],
-      initial: true
+      initial: true,
+      saved: []
     });
   }
 

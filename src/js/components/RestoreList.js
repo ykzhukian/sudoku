@@ -23,6 +23,7 @@ export default class RestoreList extends Component {
         </div>
         <Restore restore={this.props.restore} sudokuIndex={index + ''} sudoku={store.sudoku} />
         <RestoreDetail sudokuIndex={index + ''} sudoku={store.sudoku} />
+        
       </div>
     ))
     :
